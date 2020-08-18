@@ -3,4 +3,9 @@ project(ChatProject)
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_subdirectory(test)
+
+set(SOURCE_FILES Chat.cpp Chat.h)
+add_library(core ${SOURCE_FILES})
 add_executable(ChatProject main.cpp)
+target_link_libraries(ChatProject core)
