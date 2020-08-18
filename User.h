@@ -9,6 +9,8 @@
 #include <string>
 #include <list>
 #include <utility>
+#include <algorithm>
+#include <iostream>
 
 class User {
 public:
@@ -19,6 +21,24 @@ public:
     User &operator=(const User &rhs) = delete;
 
     void addFriend(const User &newFriend);
+
+    void removeFriend(const User &u);
+
+    const std::string &getName() const;
+
+    void setName(const std::string &name);
+
+    const std::string &getSurname() const;
+
+    void setSurname(const std::string &surname);
+
+    const std::string &getNick() const;
+
+    void setNick(const std::string &nick);
+
+    const std::list<std::string> &getFriends() const;
+
+    void setFriends(const std::list<std::string> &friends);
 
 private:
     std::string name;
