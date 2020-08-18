@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(test)
 
-set(SOURCE_FILES Chat.cpp Chat.h)
+set(SOURCE_FILES Chat.cpp Chat.h User.cpp User.h Message.cpp Message.h ChatRegister.cpp ChatRegister.h)
 add_library(core ${SOURCE_FILES})
 add_executable(ChatProject main.cpp)
 target_link_libraries(ChatProject core)
