@@ -21,9 +21,7 @@ public:
 
     User &operator=(const User &rhs) = delete;
 
-    void addFriend(const User &newFriend);
 
-    void removeFriend(const User &u);
 
     const std::string &getName() const;
 
@@ -37,15 +35,12 @@ public:
 
     void setNick(const std::string &nick);
 
-    const std::list<std::string> &getFriends() const;
 
-    void setFriends(const std::list<std::string> &friends);
 
 private:
     std::string name;
     std::string surname;
     std::string nick;
-    std::list<std::string> friends;
 };
 
 

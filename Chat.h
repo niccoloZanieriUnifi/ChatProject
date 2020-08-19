@@ -5,9 +5,17 @@
 #ifndef CHATPROJECT_CHAT_H
 #define CHATPROJECT_CHAT_H
 
+#include <iostream>
+#include <list>
+#include "Message.h"
 
 class Chat {
+    Chat(std::string u1, std::string u2) : user1(std::move(u1)), user2(std::move(u2)) {};
 
+private:
+    std::string user1;
+    std::string user2;
+    std::list<Message> messages;
 };
 
 
