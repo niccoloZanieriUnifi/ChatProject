@@ -11,6 +11,7 @@
 #include <utility>
 #include <algorithm>
 #include <iostream>
+#include "Message.h"
 
 class User {
 public:
@@ -45,7 +46,6 @@ private:
     std::string surname;
     std::string nick;
     std::list<std::string> friends;
-
 };
 
 
