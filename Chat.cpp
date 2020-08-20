@@ -47,14 +47,8 @@ const std::string &Chat::getUser1() const {
     return user1;
 }
 
-void Chat::setUser1(const std::string &user1) {
-    Chat::user1 = user1;
-}
 
 const std::string &Chat::getUser2() const {
     return user2;
 }
 
-void Chat::setUser2(const std::string &user2) {
-    Chat::user2 = user2;
-}

@@ -18,8 +18,10 @@ public:
 
     void deleteAll();
 
+    const std::map<std::string, std::shared_ptr<Chat>> &getChats() const;
+
 private:
-    std::map<std::string, std::shared_ptr<Chat>> chatRegister;
+    std::map<std::string, std::shared_ptr<Chat>> chats;
 };
 
 
