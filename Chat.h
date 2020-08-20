@@ -26,7 +26,6 @@ private:
     std::string user1;
     std::string user2;
     std::list<Message> messages;
-
 };
 
 

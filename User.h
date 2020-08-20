@@ -15,7 +15,7 @@
 
 class User {
 public:
-    User(std::string n, std::string s, std::string nick);
+    User(std::string n, std::string s, const std::string &nk);
 
     User(const User &original) = delete;
 
@@ -33,12 +33,11 @@ public:
 
     void setNick(const std::string &nick);
 
-
-
 private:
     std::string name;
     std::string surname;
     std::string nick;
+    static std::list<std::string> usedNicks;
 };
 
 
