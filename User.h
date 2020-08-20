@@ -15,13 +15,11 @@
 
 class User {
 public:
-    User(std::string n, std::string &s, std::string &nick);
+    User(std::string n, std::string s, std::string nick);
 
     User(const User &original) = delete;
 
     User &operator=(const User &rhs) = delete;
-
-
 
     const std::string &getName() const;
 

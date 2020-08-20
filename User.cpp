@@ -4,8 +4,8 @@
 
 #include "User.h"
 
-User::User(std::string n, std::string &s, std::string &nick) : name(std::move(n)), surname(std::move(s)),
-                                                               nick(std::move(nick)) {}
+User::User(std::string n, std::string s, std::string nick) : name(std::move(n)), surname(std::move(s)),
+                                                             nick(std::move(nick)) {}
 
 
 const std::string &User::getName() const {
