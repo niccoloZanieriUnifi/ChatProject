@@ -16,10 +16,17 @@ class Chat {
 
     auto firstUnreadMessage();
 
+    void open();
+
+    void deleteAll();
+
+    void deleteMsg(int msgPos);
+
 private:
     std::string user1;
     std::string user2;
     std::list<Message> messages;
+
 };
 
 

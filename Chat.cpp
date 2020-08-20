@@ -16,4 +16,29 @@ auto Chat::firstUnreadMessage() {
             break;
         }
     }
+    return result;
+}
+
+void Chat::open() {
+    std::cout << "You opened chat between " << user1 << " and " << user2 << std::endl;
+    for (auto it = firstUnreadMessage(); it != messages.end(); it++) {
+        it->setRead(true);
+    }
+}
+
+void Chat::deleteAll() {
+    messages.clear();
+}
+
+void Chat::deleteMsg(int msgPos) {
+    if (msgPos > messages.size() || msgPos < 0)
+        throw std::out_of_range("Selected message doesn't exist.");
+
+    auto it = messages.begin();
+    int i = 0;
+    while (i < msgPos) {
+        it++;
+        i++;
+    }
+    messages.erase(it);
 }
