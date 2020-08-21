@@ -34,6 +34,8 @@ public:
 
     void removeChat(const std::string &username);
 
+    void sendMessage(const std::string &addressee, const std::string &text);
+
 private:
     std::string nick;
     static std::list<std::string> usedNicks;

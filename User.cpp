@@ -48,6 +48,10 @@ void User::removeChat(const std::string &username) {
     chatRegister.removeChat(username);
 }
 
+void User::sendMessage(const std::string &addressee, const std::string &text) {
+    chatRegister.getChat(addressee).addMessage(text);
+}
+
 
 
 

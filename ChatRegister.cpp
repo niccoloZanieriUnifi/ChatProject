@@ -20,3 +20,7 @@ const std::map<std::string, std::shared_ptr<Chat>> &ChatRegister::getChats() con
     return chats;
 }
 
+Chat &ChatRegister::getChat(const std::string &username) {
+    return *chats.find(username)->second;
+}
+

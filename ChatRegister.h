@@ -16,6 +16,8 @@ public:
 
     void removeChat(const std::string &username);
 
+    Chat &getChat(const std::string &username);
+
     void deleteAll();
 
     const std::map<std::string, std::shared_ptr<Chat>> &getChats() const;
