@@ -6,10 +6,8 @@
 #include "../User.h"
 
 TEST(UserTest, Constructor) {
-    User u1("Jeff", "Bezos", "Amazonrules1964");
-    ASSERT_EQ(u1.getName(), "Jeff");
-    ASSERT_EQ(u1.getSurname(), "Bezos");
+    User u1("Amazonrules1964");
     ASSERT_EQ(u1.getNick(), "Amazonrules1964");
 
-    EXPECT_THROW(User u2("Jeff", "Bezos", "Amazonrules1964"), std::invalid_argument);
+    EXPECT_THROW(User u2("Amazonrules1964"), std::invalid_argument);
 }
