@@ -6,6 +6,7 @@
 #define CHATPROJECT_MESSAGE_H
 
 #include <iostream>
+#include <chrono>
 
 class Message {
 public:
@@ -19,12 +20,17 @@ public:
 
     void setImportant(bool important);
 
+    bool operator==(const Message &rhs);
+
+    bool operator!=(const Message &rhs);
+
 private:
     std::string sender;
     std::string addressee;
     std::string text;
     bool read{false};
     bool important{false};
+    decltype(std::chrono::system_clock::now()) time;
 
 };
 
