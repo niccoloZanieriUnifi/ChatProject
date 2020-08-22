@@ -15,7 +15,7 @@ public:
 
     void addMessage(const std::string &text);
 
-    auto firstUnreadMessage();
+    std::_List_iterator<Message> firstUnreadMessage();
 
     void open();
 
@@ -26,6 +26,8 @@ public:
     const std::string &getUser1() const;
 
     const std::string &getUser2() const;
+
+    const std::list<Message> &getMessages() const;
 
 private:
     std::string user1;

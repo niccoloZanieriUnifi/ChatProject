@@ -8,10 +8,10 @@ void Chat::addMessage(const std::string &text) {
     messages.emplace_back(user1, user2, text);
 }
 
-auto Chat::firstUnreadMessage() {
+std::_List_iterator<Message> Chat::firstUnreadMessage() {
     auto result = messages.end();
     for (auto it = messages.begin(); it != messages.end(); it++) {
-        if (it->isRead()) {
+        if (!it->isRead()) {
             result = it;
             break;
         }
@@ -50,5 +50,9 @@ const std::string &Chat::getUser1() const {
 
 const std::string &Chat::getUser2() const {
     return user2;
+}
+
+const std::list<Message> &Chat::getMessages() const {
+    return messages;
 }
 
