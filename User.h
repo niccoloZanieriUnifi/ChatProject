@@ -18,7 +18,7 @@ class User {
 public:
     User(const std::string &nk);
 
-    User(const User &original) = delete;
+    User(const User &original) = default;
 
     User &operator=(const User &rhs) = delete;
 
@@ -35,7 +35,6 @@ public:
     void removeChat(const std::string &username);
 
     void sendMessage(const std::string &addressee, const std::string &text);
-
 private:
     std::string nick;
     static std::list<std::string> usedNicks;
