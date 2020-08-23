@@ -16,6 +16,6 @@ TEST(ChatRegisterTest, AddChat_SimpleValue_ChatAddedToRegister) {
 
     cR1.addChat(c1);
     ASSERT_FALSE(cR1.getChats().empty());
-    ASSERT_EQ(c1, cR1.getChat("JakePeralta99"));
-
+    ASSERT_THROW(cR1.getChat("TerenceJeffords99"), std::invalid_argument);
+    ASSERT_TRUE(cR1.getChat("RaymondHolt99") == c1);
 }

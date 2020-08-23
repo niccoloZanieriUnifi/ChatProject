@@ -21,6 +21,10 @@ const std::map<std::string, std::shared_ptr<Chat>> &ChatRegister::getChats() con
 }
 
 Chat &ChatRegister::getChat(const std::string &username) {
-    return *chats.find(username)->second;
+    auto it = chats.find(username);
+    if (it != chats.end())
+        return *it->second;
+    else
+        throw std::invalid_argument("There's no such chat with the requested user.");
 }
 

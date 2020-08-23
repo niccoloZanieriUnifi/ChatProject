@@ -52,4 +52,11 @@ TEST(ChatTest, DeleteAll_ChatWithSomeMessages_AllMessagesAreDeleted) {
     ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages().end());
 }
 
+TEST(ChatTest, EqualityOperators) {
+    Chat simpleChat1("AnneBoleyn", "HenryVII");
+    Chat simpleChat2("MarieAntoinette", "NapoleoneBuonaparte");
+
+    ASSERT_FALSE(simpleChat1 == simpleChat2);
+    ASSERT_TRUE(simpleChat1 == Chat("AnneBoleyn", "HenryVII"));
+}
 
