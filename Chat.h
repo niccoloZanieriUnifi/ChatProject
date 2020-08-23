@@ -29,9 +29,9 @@ public:
 
     const std::list<Message> &getMessages() const;
 
-    bool operator==(const Chat &rhs);
+    bool operator==(const Chat &rhs) const;
 
-    bool operator!=(const Chat &rhs);
+    bool operator!=(const Chat &rhs) const;
 private:
     std::string user1;
     std::string user2;

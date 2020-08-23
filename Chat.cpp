@@ -56,11 +56,11 @@ const std::list<Message> &Chat::getMessages() const {
     return messages;
 }
 
-bool Chat::operator==(const Chat &rhs) {
+bool Chat::operator==(const Chat &rhs) const {
     return (rhs.user1 == user1 && rhs.user2 == user2);
 }
 
-bool Chat::operator!=(const Chat &rhs) {
+bool Chat::operator!=(const Chat &rhs) const {
     return !(*this == rhs);
 }
 
