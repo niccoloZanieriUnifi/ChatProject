@@ -19,3 +19,27 @@ TEST(ChatRegisterTest, AddChat_SimpleValue_ChatAddedToRegister) {
     ASSERT_THROW(cR1.getChat("TerenceJeffords99"), std::invalid_argument);
     ASSERT_TRUE(cR1.getChat("RaymondHolt99") == c1);
 }
+
+TEST(ChatRegisterTest, RemoveChat_SimpleValue_ChatRemovedFromRegister) {
+    ChatRegister cR1;
+    Chat c1("JakePeralta99", "RaymondHolt99");
+    Chat c2("AmySantiago99", "GinaLinetti99");
+    cR1.addChat(c1);
+    cR1.addChat(c2);
+
+    ASSERT_TRUE(cR1.getChats().size() == 2);
+    cR1.removeChat("RaymondHolt99");
+    ASSERT_THROW(cR1.getChat("RaymondHolt99"), std::invalid_argument);
+    ASSERT_TRUE(cR1.getChats().size() == 1);
+}
+
+TEST(ChatRegisterTest, DeleteChat_SimpleValue_RegisterIsEmpty) {
+    ChatRegister cR1;
+    Chat c1("JakePeralta99", "RaymondHolt99");
+    Chat c2("AmySantiago99", "GinaLinetti99");
+    cR1.addChat(c1);
+    cR1.addChat(c2);
+
+    cR1.deleteAll();
+    ASSERT_TRUE(cR1.getChats().empty());
+}

@@ -60,3 +60,5 @@ TEST(ChatTest, EqualityOperators) {
     ASSERT_TRUE(simpleChat1 == Chat("AnneBoleyn", "HenryVII"));
 }
 
+
+
