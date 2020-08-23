@@ -29,6 +29,7 @@ public:
 
     const std::list<Message> &getMessages() const;
 
+
 private:
     std::string user1;
     std::string user2;

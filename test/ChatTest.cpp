@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include "../Chat.h"
 
-TEST(ChatTest, Constructor) {
+TEST(ChatTest, Constructor_SimpleValues_ChatInitialized) {
     Chat simpleChat("AnneBoleyn", "HenryVII");
     ASSERT_EQ(simpleChat.getUser1(), "AnneBoleyn");
     ASSERT_EQ(simpleChat.getUser2(), "HenryVII");
