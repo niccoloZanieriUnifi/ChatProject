@@ -12,7 +12,7 @@
 
 class ChatRegister {
 public:
-    void addChat(const Chat &newChat);
+    void addChat(const std::string &username, const Chat &newChat);
 
     void removeChat(const std::string &username);
 

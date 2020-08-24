@@ -4,8 +4,8 @@
 
 #include "ChatRegister.h"
 
-void ChatRegister::addChat(const Chat &newChat) {
-    chats.emplace(std::make_pair(newChat.getUser2(), std::make_shared<Chat>(newChat)));
+void ChatRegister::addChat(const std::string &username, const Chat &newChat) {
+    chats.emplace(std::make_pair(username, std::make_shared<Chat>(newChat)));
 }
 
 void ChatRegister::removeChat(const std::string &username) {
