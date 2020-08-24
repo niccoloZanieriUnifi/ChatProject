@@ -31,18 +31,19 @@ bool User::isRegisterEmpty() {
     return chatRegister.isEmpty();
 }
 
-void User::startNewChat(User otherUser) {
+void User::startNewChat(User &otherUser) {
     Chat newChat(nick, otherUser.nick);
     auto chatList = chatRegister.getChats();
+    auto othersChatList = otherUser.chatRegister.getChats();
     if (chatList.empty() || chatList.find(otherUser.nick) != chatList.end()) {
-        chatRegister.addChat(newChat);
-        otherUser.addChat(newChat);
+        chatRegister.addChat(otherUser.nick, newChat);
+        otherUser.addChat(nick, newChat);
     } else
         throw std::invalid_argument("A chat with this user already exists.");
 }
 
-void User::addChat(const Chat &newChat) {
-    chatRegister.addChat(newChat);
+void User::addChat(const std::string &username, const Chat &newChat) {
+    chatRegister.addChat(username, newChat);
 }
 
 void User::removeChat(const std::string &username) {

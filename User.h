@@ -30,9 +30,7 @@ public:
 
     bool isRegisterEmpty();
 
-    void startNewChat(User otherUser);
-
-    void addChat(const Chat &newChat);
+    void startNewChat(User &otherUser);
 
     void removeChat(const std::string &username);
 
@@ -40,6 +38,7 @@ public:
 
     void sendMessage(const std::string &addressee, const std::string &text);
 
+    void addChat(const std::string &username, const Chat &newChat);
 private:
     std::string nick;
     static std::list<std::string> usedNicks;
