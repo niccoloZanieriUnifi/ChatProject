@@ -28,3 +28,7 @@ Chat &ChatRegister::getChat(const std::string &username) {
         throw std::invalid_argument("There's no such chat with the requested user.");
 }
 
+bool ChatRegister::isEmpty() {
+    return chats.empty();
+}
+

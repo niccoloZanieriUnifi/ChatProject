@@ -7,7 +7,7 @@
 std::list<std::string> User::usedNicks;
 
 User::User(const std::string &nk) {
-    if (usedNicks.empty() || std::find(usedNicks.begin(), usedNicks.end(), nick) != usedNicks.end()) {
+    if (usedNicks.empty() || std::find(usedNicks.begin(), usedNicks.end(), nk) == usedNicks.end()) {
         nick = nk;
         usedNicks.push_back(nick);
     } else
@@ -19,7 +19,7 @@ const std::string &User::getNick() const {
 }
 
 void User::setNick(const std::string &newNick) {
-    if (std::find(usedNicks.begin(), usedNicks.end(), nick) != usedNicks.end()) {
+    if (usedNicks.empty() || std::find(usedNicks.begin(), usedNicks.end(), newNick) == usedNicks.end()) {
         usedNicks.remove(nick);
         nick = newNick;
         usedNicks.push_back(nick);
@@ -28,7 +28,7 @@ void User::setNick(const std::string &newNick) {
 }
 
 bool User::isRegisterEmpty() {
-    return chatRegister.getChats().empty();
+    return chatRegister.isEmpty();
 }
 
 void User::startNewChat(User otherUser) {
@@ -56,6 +56,14 @@ void User::sendMessage(const std::string &addressee, const std::string &text) {
         chatPtr->second->addMessage(text);
     else
         throw std::invalid_argument("There is no chat with the requested user, one must be created.");
+}
+
+Chat &User::getChat(const std::string &username) {
+    return chatRegister.getChat(username);
+}
+
+User::~User() {
+    usedNicks.remove(nick);
 }
 
 

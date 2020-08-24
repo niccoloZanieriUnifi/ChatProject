@@ -22,6 +22,8 @@ public:
 
     const std::map<std::string, std::shared_ptr<Chat>> &getChats() const;
 
+    bool isEmpty();
+
 private:
     std::map<std::string, std::shared_ptr<Chat>> chats;
 };

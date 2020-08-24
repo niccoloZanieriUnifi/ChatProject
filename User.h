@@ -16,6 +16,8 @@
 
 class User {
 public:
+    ~User();
+
     User(const std::string &nk);
 
     User(const User &original) = default;
@@ -34,7 +36,10 @@ public:
 
     void removeChat(const std::string &username);
 
+    Chat &getChat(const std::string &username);
+
     void sendMessage(const std::string &addressee, const std::string &text);
+
 private:
     std::string nick;
     static std::list<std::string> usedNicks;
