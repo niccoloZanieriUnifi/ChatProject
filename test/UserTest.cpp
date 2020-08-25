@@ -61,5 +61,15 @@ TEST(UserTest, SendMessage_SimpleValue_MessageAddedToChat) {
     ASSERT_TRUE(u2.getChat("JoffreyBaratheon").findMessage("Don't even think about it."));
 }
 
+TEST(UserTest, RemoveChat_SimpleValue_ChatRemoved) {
+    User u1("JoffreyBaratheon");
+    User u2("AryaStark");
+
+    u1.startNewChat(u2);
+    u1.removeChat("AryaStark");
+    EXPECT_THROW(u1.sendMessage("AryaStark", ""), std::invalid_argument);
+    ASSERT_EQ(u2.getChat("JoffreyBaratheon"), Chat("JoffreyBaratheon", "AryaStark"));
+}
+
 
 
