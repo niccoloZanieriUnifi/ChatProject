@@ -54,7 +54,7 @@ void User::sendMessage(const std::string &addressee, const std::string &text) {
     auto chatList = chatRegister.getChats();
     auto chatPtr = chatList.find(addressee);
     if (chatPtr != chatList.end())
-        chatPtr->second->addMessage(text);
+        chatPtr->second->addMessage(nick, addressee, text);
     else
         throw std::invalid_argument("There is no chat with the requested user, one must be created.");
 }

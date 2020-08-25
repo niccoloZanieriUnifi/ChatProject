@@ -4,8 +4,8 @@
 
 #include "Chat.h"
 
-void Chat::addMessage(const std::string &text) {
-    messages.emplace_back(user1, user2, text);
+void Chat::addMessage(const std::string &sender, const std::string &addressee, const std::string &text) {
+    messages.emplace_back(sender, addressee, text);
 }
 
 std::_List_iterator<Message> Chat::firstUnreadMessage() {
