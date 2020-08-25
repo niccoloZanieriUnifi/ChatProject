@@ -9,7 +9,7 @@ TEST(ChatTest, Constructor_SimpleValues_ChatInitialized) {
     Chat simpleChat("AnneBoleyn", "HenryVII");
     ASSERT_EQ(simpleChat.getUser1(), "AnneBoleyn");
     ASSERT_EQ(simpleChat.getUser2(), "HenryVII");
-    ASSERT_TRUE(simpleChat.getMessages().empty());
+    ASSERT_TRUE(simpleChat.getMessages()->empty());
 }
 
 TEST(ChatTest, AddMessage_SimpleValue_MessagesListIsUpdated) {
@@ -24,13 +24,13 @@ TEST(ChatTest, Open_ChatWithUnreadMsg_AllMessagesAreRead) {
     simpleChat.addMessage("Tell me the good one before.");
 
     simpleChat.open();
-    ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages().end());
+    ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
 
     simpleChat.addMessage("I'm pregnant!!");
     simpleChat.addMessage("I hope for the good that it's a boy.");
-    ASSERT_FALSE(simpleChat.firstUnreadMessage() == simpleChat.getMessages().end());
+    ASSERT_FALSE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
     simpleChat.open();
-    ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages().end());
+    ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
 }
 
 TEST(ChatTest, DeleteMessage_ChatWithSomeMessages_SelectedMessageIsDeleted) {
@@ -49,7 +49,7 @@ TEST(ChatTest, DeleteAll_ChatWithSomeMessages_AllMessagesAreDeleted) {
     simpleChat.addMessage("Tell me the good one before.");
 
     simpleChat.deleteAll();
-    ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages().end());
+    ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
 }
 
 TEST(ChatTest, EqualityOperators) {

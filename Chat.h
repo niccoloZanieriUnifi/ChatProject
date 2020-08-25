@@ -27,11 +27,14 @@ public:
 
     const std::string &getUser2() const;
 
-    const std::list<Message> &getMessages() const;
+    const std::list<Message> *getMessages() const;
+
+    bool findMessage(const std::string &text);
 
     bool operator==(const Chat &rhs) const;
 
     bool operator!=(const Chat &rhs) const;
+
 private:
     std::string user1;
     std::string user2;

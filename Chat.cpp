@@ -52,8 +52,8 @@ const std::string &Chat::getUser2() const {
     return user2;
 }
 
-const std::list<Message> &Chat::getMessages() const {
-    return messages;
+const std::list<Message> *Chat::getMessages() const {
+    return &messages;
 }
 
 bool Chat::operator==(const Chat &rhs) const {
@@ -63,6 +63,18 @@ bool Chat::operator==(const Chat &rhs) const {
 bool Chat::operator!=(const Chat &rhs) const {
     return !(*this == rhs);
 }
+
+bool Chat::findMessage(const std::string &text) {
+    bool result = false;
+    for (const auto &msg : messages) {
+        if (msg.getText() == text) {
+            result = true;
+            break;
+        }
+    }
+    return result;
+}
+
 
 
 
