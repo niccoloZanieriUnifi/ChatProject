@@ -12,7 +12,7 @@
 
 class ChatRegister {
 public:
-    void addChat(const std::string &username, const Chat &newChat);
+    const std::shared_ptr<Chat> &addChat(const std::string &username, const Chat &newChat);
 
     void removeChat(const std::string &username);
 
@@ -20,7 +20,7 @@ public:
 
     void deleteAll();
 
-    const std::map<std::string, std::shared_ptr<Chat>> &getChats() const;
+    std::map<std::string, std::shared_ptr<Chat>> &getChats();
 
     bool isEmpty();
 

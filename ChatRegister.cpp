@@ -4,8 +4,9 @@
 
 #include "ChatRegister.h"
 
-void ChatRegister::addChat(const std::string &username, const Chat &newChat) {
+const std::shared_ptr<Chat> &ChatRegister::addChat(const std::string &username, const Chat &newChat) {
     chats.emplace(std::make_pair(username, std::make_shared<Chat>(newChat)));
+    return chats.find(username)->second;
 }
 
 void ChatRegister::removeChat(const std::string &username) {
@@ -16,7 +17,7 @@ void ChatRegister::deleteAll() {
     chats.clear();
 }
 
-const std::map<std::string, std::shared_ptr<Chat>> &ChatRegister::getChats() const {
+std::map<std::string, std::shared_ptr<Chat>> &ChatRegister::getChats() {
     return chats;
 }
 

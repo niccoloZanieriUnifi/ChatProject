@@ -1,6 +1,7 @@
 #include <iostream>
+#include <memory>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    std::shared_ptr<int> a = std::make_shared<int>(2);
+    auto b = a;
 }

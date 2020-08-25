@@ -33,11 +33,11 @@ bool User::isRegisterEmpty() {
 
 void User::startNewChat(User &otherUser) {
     Chat newChat(nick, otherUser.nick);
-    auto chatList = chatRegister.getChats();
-    auto othersChatList = otherUser.chatRegister.getChats();
+    auto &chatList = chatRegister.getChats();
+    auto &othersChatList = otherUser.chatRegister.getChats();
     if (chatList.empty() || chatList.find(otherUser.nick) != chatList.end()) {
-        chatRegister.addChat(otherUser.nick, newChat);
-        otherUser.addChat(nick, newChat);
+        auto chatShared = chatRegister.addChat(otherUser.nick, newChat);
+        othersChatList.emplace(nick, chatShared);
     } else
         throw std::invalid_argument("A chat with this user already exists.");
 }
@@ -65,6 +65,10 @@ Chat &User::getChat(const std::string &username) {
 
 User::~User() {
     usedNicks.remove(nick);
+}
+
+const std::list<std::string> *User::getUsedNicks() {
+    return &usedNicks;
 }
 
 

@@ -39,11 +39,13 @@ public:
     void sendMessage(const std::string &addressee, const std::string &text);
 
     void addChat(const std::string &username, const Chat &newChat);
+
+    static const std::list<std::string> *getUsedNicks();
+
 private:
     std::string nick;
     static std::list<std::string> usedNicks;
     ChatRegister chatRegister;
-
 };
 
 
