@@ -28,6 +28,13 @@ TEST(UserTest, SetNick_UsedNick_ExpectThrow) {
     EXPECT_THROW(u2.setNick("JoffreyBaratheon"), std::invalid_argument);
 }
 
+TEST(UserTest, SetNick_ValidValue_NickIsChanged) {
+    User u1("JamieLannister");
+
+    u1.setNick("Kingslayer");
+    ASSERT_EQ(u1.getNick(), "Kingslayer");
+}
+
 TEST(UsertTest, AddChat_SimpleValue_ChatIsAddedToRegister) {
     User u1("JhonSnow");
     Chat c1("JhonSnow", "SamwellTarly");
@@ -43,6 +50,7 @@ TEST(UserTest, StartNewChat_ChatThatAlreadyExists_ExpectThrow) {
     u1.startNewChat(u2);
     ASSERT_EQ(u1.getChat("AryaStark"), Chat("JoffreyBaratheon", "AryaStark"));
     ASSERT_EQ(u2.getChat("JoffreyBaratheon"), Chat("JoffreyBaratheon", "AryaStark"));
+    EXPECT_THROW(u1.startNewChat(u2), std::invalid_argument);
 }
 
 TEST(UserTest, SendMessage_SimpleValue_MessageAddedToChat) {
