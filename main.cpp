@@ -24,4 +24,9 @@ int main() {
     arya->sendMessage("EddardStark", "Daddyy, Sansa is bothering mee.");
     arya->removeChat("JoffreyBaratheon");
     joffrey->removeChat("AryaStark");
+
+    delete arya;
+    delete sansa;
+    delete joffrey;
+    delete eddard;
 }
