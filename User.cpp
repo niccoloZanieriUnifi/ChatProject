@@ -28,7 +28,7 @@ void User::setNick(const std::string &newNick) {
         throw std::invalid_argument("Selected nickname already exists.");
 }
 
-bool User::isRegisterEmpty() {
+bool User::isRegisterEmpty() const {
     return chatRegister.isEmpty();
 }
 

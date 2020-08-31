@@ -44,7 +44,6 @@ private:
     bool read{false};
     bool important{false};
     decltype(std::chrono::system_clock::now()) time;
-
 };
 
 
