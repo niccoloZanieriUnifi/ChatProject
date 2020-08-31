@@ -57,7 +57,7 @@ void User::sendMessage(const std::string &addressee, const std::string &text) {
     auto chatList = chatRegister.getChats();
     auto chatPtr = chatList.find(addressee);
     if (chatPtr != chatList.end()) {
-        chatPtr->second->addMessage(nick, addressee, text);
+        chatPtr->second->addMessage(Message(nick, addressee, text));
         std::cout << "A message has been added to the chat between " << nick << " and " << addressee << std::endl;
         std::cout << "    Sender: " << nick << std::endl << "    Addressee: " << addressee << std::endl;
         std::cout << "    Text: '" << text << "'" << std::endl;

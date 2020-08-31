@@ -14,20 +14,30 @@ TEST(ChatTest, Constructor_SimpleValues_ChatInitialized) {
 
 TEST(ChatTest, AddMessage_SimpleValue_MessagesListIsUpdated) {
     Chat simpleChat("AnneBoleyn", "HenryVII");
-    simpleChat.addMessage("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news.");
+    simpleChat.addMessage(Message("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news."));
     ASSERT_EQ(simpleChat.firstUnreadMessage()->getText(), "Sweetheart, there's good news and bad news.");
+}
+
+TEST(ChatTest, AddMessage_WrongAddresse_ExceptionIsThrown) {
+    Chat simpleChat("AnneBoleyn", "HenryVII");
+
+    EXPECT_THROW(simpleChat.addMessage(Message("AnneBoleyn", "LadyElizabeth", "Fancy a tea?")),
+                 std::invalid_argument);
+    EXPECT_THROW(simpleChat.addMessage(Message("HenryVII", "LadyElizabeth", "Tell your daughter to pay attention.")),
+                 std::invalid_argument);
+
 }
 
 TEST(ChatTest, Open_ChatWithUnreadMsg_AllMessagesAreRead) {
     Chat simpleChat("AnneBoleyn", "HenryVII");
-    simpleChat.addMessage("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news.");
-    simpleChat.addMessage("HenryVII", "AnneBoleyn", "Tell me the good one before.");
+    simpleChat.addMessage(Message("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news."));
+    simpleChat.addMessage(Message("HenryVII", "AnneBoleyn", "Tell me the good one before."));
 
     simpleChat.open();
     ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
 
-    simpleChat.addMessage("AnneBoleyn", "HenryVII", "I'm pregnant!!");
-    simpleChat.addMessage("HenryVII", "AnneBoleyn", "I hope for the good that it's a boy.");
+    simpleChat.addMessage(Message("AnneBoleyn", "HenryVII", "I'm pregnant!!"));
+    simpleChat.addMessage(Message("HenryVII", "AnneBoleyn", "I hope for the good that it's a boy."));
     ASSERT_FALSE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
     simpleChat.open();
     ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());
@@ -35,8 +45,8 @@ TEST(ChatTest, Open_ChatWithUnreadMsg_AllMessagesAreRead) {
 
 TEST(ChatTest, DeleteMessage_ChatWithSomeMessages_SelectedMessageIsDeleted) {
     Chat simpleChat("AnneBoleyn", "HenryVII");
-    simpleChat.addMessage("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news.");
-    simpleChat.addMessage("HenryVII", "AnneBoleyn", "Tell me the good one before.");
+    simpleChat.addMessage(Message("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news."));
+    simpleChat.addMessage(Message("HenryVII", "AnneBoleyn", "Tell me the good one before."));
 
     ASSERT_EQ(simpleChat.firstUnreadMessage()->getText(), "Sweetheart, there's good news and bad news.");
     simpleChat.deleteMsg(0);
@@ -45,8 +55,8 @@ TEST(ChatTest, DeleteMessage_ChatWithSomeMessages_SelectedMessageIsDeleted) {
 
 TEST(ChatTest, DeleteAll_ChatWithSomeMessages_AllMessagesAreDeleted) {
     Chat simpleChat("AnneBoleyn", "HenryVII");
-    simpleChat.addMessage("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news.");
-    simpleChat.addMessage("HenryVII", "AnneBoleyn", "Tell me the good one before.");
+    simpleChat.addMessage(Message("AnneBoleyn", "HenryVII", "Sweetheart, there's good news and bad news."));
+    simpleChat.addMessage(Message("HenryVII", "AnneBoleyn", "Tell me the good one before."));
 
     simpleChat.deleteAll();
     ASSERT_TRUE(simpleChat.firstUnreadMessage() == simpleChat.getMessages()->end());

@@ -4,8 +4,10 @@
 
 #include "Chat.h"
 
-void Chat::addMessage(const std::string &sender, const std::string &addressee, const std::string &text) {
-    messages.emplace_back(sender, addressee, text);
+void Chat::addMessage(const Message &msg) {
+    if (msg.getAddressee() != user1 && msg.getAddressee() != user2)
+        throw std::invalid_argument("Message's addressee doesn't match any chat's user.");
+    messages.emplace_back(msg.getSender(), msg.getAddressee(), msg.getText());
 }
 
 std::_List_iterator<Message> Chat::firstUnreadMessage() {
