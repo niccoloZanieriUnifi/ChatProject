@@ -18,7 +18,7 @@ class User {
 public:
     ~User();
 
-    User(const std::string &nk);
+    explicit User(const std::string &nk);
 
     User(const User &original) = default;
 
@@ -36,7 +36,7 @@ public:
 
     Chat &getChat(const std::string &username);
 
-    void sendMessage(const std::string &addressee, const std::string &text);
+    void sendMessage(const User &addressee, const std::string &text);
 
     void addChat(const std::string &username, const Chat &newChat);
 

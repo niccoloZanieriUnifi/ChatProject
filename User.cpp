@@ -53,16 +53,12 @@ void User::removeChat(const std::string &username) {
     chatRegister.removeChat(username);
 }
 
-void User::sendMessage(const std::string &addressee, const std::string &text) {
-    auto chatList = chatRegister.getChats();
-    auto chatPtr = chatList.find(addressee);
-    if (chatPtr != chatList.end()) {
-        chatPtr->second->addMessage(nick, addressee, text);
-        std::cout << "A message has been added to the chat between " << nick << " and " << addressee << std::endl;
-        std::cout << "    Sender: " << nick << std::endl << "    Addressee: " << addressee << std::endl;
-        std::cout << "    Text: '" << text << "'" << std::endl;
-    } else
-        throw std::invalid_argument("There is no chat with the requested user, one must be created.");
+void User::sendMessage(const User &addressee, const std::string &text) {
+    auto &chat = getChat(addressee.nick);
+    chat.addMessage(nick, addressee.nick, text);
+    std::cout << "A message has been added to the chat between " << nick << " and " << addressee.nick << std::endl;
+    std::cout << "    Sender: " << nick << std::endl << "    Addressee: " << addressee.nick << std::endl;
+    std::cout << "    Text: '" << text << "'" << std::endl;
 }
 
 Chat &User::getChat(const std::string &username) {
