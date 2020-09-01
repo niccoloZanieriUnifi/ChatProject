@@ -21,29 +21,6 @@ TEST(UserTest, Destructor_SimpleValue_NickRemovedFromUsedNicks) {
     ASSERT_TRUE(find(nicks->begin(), nicks->end(), "FrankGallagherIllinois") == nicks->end());
 }
 
-TEST(UserTest, SetNick_UsedNick_ExpectThrow) {
-    User u1("JoffreyBaratheon");
-    User u2("AryaStark");
-
-    EXPECT_THROW(u2.setNick("JoffreyBaratheon"), std::invalid_argument);
-}
-
-TEST(UserTest, SetNick_ValidValue_NickIsChanged) {
-    User u1("JamieLannister");
-
-    u1.setNick("Kingslayer");
-    ASSERT_EQ(u1.getNick(), "Kingslayer");
-}
-
-TEST(UserTest, GetChat_ChangedNick_RightChatReturned) {
-    User u1("JamieLannister");
-    User u2("CerseiLannister");
-
-    u2.startNewChat(u1);
-    u1.setNick("Kingslayer");
-    EXPECT_THROW(u2.getChat(u1), std::invalid_argument);
-}
-
 TEST(UsertTest, AddChat_SimpleValue_ChatIsAddedToRegister) {
     User u1("JhonSnow");
     User u2("SamwellTarly");

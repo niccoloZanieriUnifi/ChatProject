@@ -11,8 +11,6 @@
 
 class Chat {
 public:
-    ~Chat();
-
     Chat(std::string u1, std::string u2) : user1(std::move(u1)), user2(std::move(u2)) {};
 
     void addMessage(const Message &msg);

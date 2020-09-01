@@ -77,9 +77,6 @@ bool Chat::findMessage(const std::string &text) {
     return result;
 }
 
-Chat::~Chat() {
-    std::cout << "Chat between " << user1 << " and " << user2 << " has been deleted." << std::endl;
-}
 
 
 

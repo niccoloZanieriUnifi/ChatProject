@@ -4,8 +4,6 @@
 
 #include "User.h"
 
-std::list<std::string> User::usedNicks;
-
 User::User(const std::string &nk) {
     if (usedNicks.empty() || std::find(usedNicks.begin(), usedNicks.end(), nk) == usedNicks.end()) {
         nick = nk;
@@ -16,16 +14,6 @@ User::User(const std::string &nk) {
 
 const std::string &User::getNick() const {
     return nick;
-}
-
-void User::setNick(const std::string &newNick) {
-    if (usedNicks.empty() || std::find(usedNicks.begin(), usedNicks.end(), newNick) == usedNicks.end()) {
-        usedNicks.remove(nick);
-        std::cout << nick << " changed his nickname to " << newNick << "." << std::endl;
-        nick = newNick;
-        usedNicks.push_back(nick);
-    } else
-        throw std::invalid_argument("Selected nickname already exists.");
 }
 
 bool User::isRegisterEmpty() const {
@@ -55,7 +43,7 @@ void User::removeChat(const std::string &username) {
 
 void User::sendMessage(const User &addressee, const std::string &text) {
     auto &chat = getChat(addressee);
-    chat.addMessage(nick, addressee.nick, text);
+    chat.addMessage(Message(nick, addressee.nick, text));
     std::cout << "A message has been added to the chat between " << nick << " and " << addressee.nick << std::endl;
     std::cout << "    Sender: " << nick << std::endl << "    Addressee: " << addressee.nick << std::endl;
     std::cout << "    Text: '" << text << "'" << std::endl;

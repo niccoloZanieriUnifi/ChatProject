@@ -26,8 +26,6 @@ public:
 
     const std::string &getNick() const;
 
-    void setNick(const std::string &nick);
-
     bool isRegisterEmpty() const;
 
     void startNewChat(User &otherUser);
