@@ -4,6 +4,8 @@
 
 #include "User.h"
 
+std::list<std::string> User::usedNicks;
+
 User::User(const std::string &nk) {
     if (usedNicks.empty() || std::find(usedNicks.begin(), usedNicks.end(), nk) == usedNicks.end()) {
         nick = nk;
