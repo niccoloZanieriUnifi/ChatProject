@@ -10,6 +10,7 @@
 #include <memory>
 #include "Chat.h"
 
+
 class ChatRegister {
 public:
     const std::shared_ptr<Chat> &addChat(const std::string &username, const Chat &newChat);

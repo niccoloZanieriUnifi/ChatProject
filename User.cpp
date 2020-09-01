@@ -44,8 +44,8 @@ void User::startNewChat(User &otherUser) {
         throw std::invalid_argument("A chat with this user already exists.");
 }
 
-void User::addChat(const std::string &username, const Chat &newChat) {
-    chatRegister.addChat(username, newChat);
+void User::addChat(const User &otherUser, const Chat &newChat) {
+    chatRegister.addChat(otherUser.nick, newChat);
 }
 
 void User::removeChat(const std::string &username) {
@@ -54,15 +54,15 @@ void User::removeChat(const std::string &username) {
 }
 
 void User::sendMessage(const User &addressee, const std::string &text) {
-    auto &chat = getChat(addressee.nick);
+    auto &chat = getChat(addressee);
     chat.addMessage(nick, addressee.nick, text);
     std::cout << "A message has been added to the chat between " << nick << " and " << addressee.nick << std::endl;
     std::cout << "    Sender: " << nick << std::endl << "    Addressee: " << addressee.nick << std::endl;
     std::cout << "    Text: '" << text << "'" << std::endl;
 }
 
-Chat &User::getChat(const std::string &username) {
-    return chatRegister.getChat(username);
+Chat &User::getChat(const User &otherUser) {
+    return chatRegister.getChat(otherUser.getNick());
 }
 
 User::~User() {

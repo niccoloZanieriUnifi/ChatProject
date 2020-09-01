@@ -35,12 +35,22 @@ TEST(UserTest, SetNick_ValidValue_NickIsChanged) {
     ASSERT_EQ(u1.getNick(), "Kingslayer");
 }
 
+TEST(UserTest, GetChat_ChangedNick_RightChatReturned) {
+    User u1("JamieLannister");
+    User u2("CerseiLannister");
+
+    u2.startNewChat(u1);
+    u1.setNick("Kingslayer");
+    EXPECT_THROW(u2.getChat(u1), std::invalid_argument);
+}
+
 TEST(UsertTest, AddChat_SimpleValue_ChatIsAddedToRegister) {
     User u1("JhonSnow");
+    User u2("SamwellTarly");
     Chat c1("JhonSnow", "SamwellTarly");
 
-    u1.addChat("SamwellTarly", c1);
-    ASSERT_TRUE(u1.getChat("SamwellTarly") == c1);
+    u1.addChat(u2, c1);
+    ASSERT_TRUE(u1.getChat(u2) == c1);
 }
 
 TEST(UserTest, StartNewChat_ChatThatAlreadyExists_ExpectThrow) {
@@ -48,8 +58,8 @@ TEST(UserTest, StartNewChat_ChatThatAlreadyExists_ExpectThrow) {
     User u2("AryaStark");
 
     u1.startNewChat(u2);
-    ASSERT_EQ(u1.getChat("AryaStark"), Chat("JoffreyBaratheon", "AryaStark"));
-    ASSERT_EQ(u2.getChat("JoffreyBaratheon"), Chat("JoffreyBaratheon", "AryaStark"));
+    ASSERT_EQ(u1.getChat(u2), Chat("JoffreyBaratheon", "AryaStark"));
+    ASSERT_EQ(u2.getChat(u1), Chat("JoffreyBaratheon", "AryaStark"));
     EXPECT_THROW(u1.startNewChat(u2), std::invalid_argument);
 }
 
@@ -58,15 +68,15 @@ TEST(UserTest, SendMessage_SimpleValue_MessageAddedToChat) {
     User u2("AryaStark");
 
     u1.startNewChat(u2);
-    ASSERT_EQ(u1.getChat("AryaStark"), Chat("JoffreyBaratheon", "AryaStark"));
-    ASSERT_EQ(u2.getChat("JoffreyBaratheon"), Chat("JoffreyBaratheon", "AryaStark"));
+    ASSERT_EQ(u1.getChat(u2), Chat("JoffreyBaratheon", "AryaStark"));
+    ASSERT_EQ(u2.getChat(u1), Chat("JoffreyBaratheon", "AryaStark"));
 
-    u1.sendMessage("AryaStark", "I'll kill your wolf.");
-    u2.sendMessage("JoffreyBaratheon", "Don't even think about it.");
-    ASSERT_TRUE(u1.getChat("AryaStark").findMessage("I'll kill your wolf."));
-    ASSERT_TRUE(u1.getChat("AryaStark").findMessage("Don't even think about it."));
-    ASSERT_TRUE(u2.getChat("JoffreyBaratheon").findMessage("I'll kill your wolf."));
-    ASSERT_TRUE(u2.getChat("JoffreyBaratheon").findMessage("Don't even think about it."));
+    u1.sendMessage(u2, "I'll kill your wolf.");
+    u2.sendMessage(u1, "Don't even think about it.");
+    ASSERT_TRUE(u1.getChat(u2).findMessage("I'll kill your wolf."));
+    ASSERT_TRUE(u1.getChat(u2).findMessage("Don't even think about it."));
+    ASSERT_TRUE(u2.getChat(u1).findMessage("I'll kill your wolf."));
+    ASSERT_TRUE(u2.getChat(u1).findMessage("Don't even think about it."));
 }
 
 TEST(UserTest, RemoveChat_SimpleValue_ChatRemoved) {
@@ -75,8 +85,8 @@ TEST(UserTest, RemoveChat_SimpleValue_ChatRemoved) {
 
     u1.startNewChat(u2);
     u1.removeChat("AryaStark");
-    EXPECT_THROW(u1.sendMessage("AryaStark", ""), std::invalid_argument);
-    ASSERT_EQ(u2.getChat("JoffreyBaratheon"), Chat("JoffreyBaratheon", "AryaStark"));
+    EXPECT_THROW(u1.sendMessage(u2, ""), std::invalid_argument);
+    ASSERT_EQ(u2.getChat(u1), Chat("JoffreyBaratheon", "AryaStark"));
 }
 
 

@@ -34,11 +34,11 @@ public:
 
     void removeChat(const std::string &username);
 
-    Chat &getChat(const std::string &username);
+    Chat &getChat(const User &otherUser);
 
     void sendMessage(const User &addressee, const std::string &text);
 
-    void addChat(const std::string &username, const Chat &newChat);
+    void addChat(const User &username, const Chat &newChat);
 
     static const std::list<std::string> *getUsedNicks();
 
