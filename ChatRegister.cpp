@@ -21,7 +21,7 @@ std::map<std::string, std::shared_ptr<Chat>> &ChatRegister::getChats() {
     return chats;
 }
 
-Chat &ChatRegister::getChat(const std::string &username) {
+Chat &ChatRegister::getChat(const std::string &username) const {
     auto it = chats.find(username);
     if (it != chats.end())
         return *it->second;
