@@ -61,7 +61,7 @@ void User::sendMessage(const User &addressee, const std::string &text) {
     std::cout << "    Text: '" << text << "'" << std::endl;
 }
 
-Chat &User::getChat(const User &otherUser) {
+Chat &User::getChat(const User &otherUser) const {
     return chatRegister.getChat(otherUser.getNick());
 }
 

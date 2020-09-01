@@ -17,7 +17,7 @@ public:
 
     void removeChat(const std::string &username);
 
-    Chat &getChat(const std::string &username);
+    Chat &getChat(const std::string &username) const;
 
     void deleteAll();
 
